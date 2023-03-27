@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Домашне завдання 11</title>
+</head>
+<body>
+	<head>
+		<a href="../index.html">На головну</a>
+	</head>
+	<main>
+		<h1>Задача 3</h1>
+		<p>Задача 3. Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.</p>
+		<script>
+			function getRandom(min,max) {
+				return Math.floor(Math.random()*(max-min+1)+min)
+			}
+			//формування ігрового поля
+			function getField(row,column) {
+				let field=[]
+				for (let i = 0; i < row; i++) {
+					let col=[]
+					for (let j = 0; j < column; j++) {
+						col.push(0)
+					}
+					field.push(col)
+				}
+				return field
+			}
+			let field=getField(6,6)
+			//розташування кораблів
+			function getShips(field,qtyShips) {
+				for (let i = 0; i < qtyShips; i++) {
+					let pos_x=getRandom(0,5)
+					let pos_y=getRandom(0,5)
+					if (field[pos_y][pos_x]!==1) {
+						field[pos_y][pos_x]=1
+					} else i--
+				}
+				return field
+			}
+			let qtyShips=5
+			const fieldWithShips=getShips(field,qtyShips)
+			console.table(fieldWithShips)
+			//ввід кількості снарядів
+			let shots=parseInt(prompt('введіть кількість пострілів, не меньше 5.'))
+			do {
+				let x_shot=parseInt(prompt('Введіть координату постріло по вісі Х від 0 до 5'))
+				let y_shot=parseInt(prompt('Введіть координату постріло по вісі Y від 0 до 5'))
+				shots--
+				if (fieldWithShips[y_shot][x_shot]===1){
+					qtyShips--
+					alert(`Ви потопили корабель, залишилось ${qtyShips} кораблів`)
+				} else alert('Промазали')
+			} while (shots>0&&qtyShips>0);
+			if (qtyShips===0) {
+				alert('Ви виграли!')
+			} else alert('Ви програли! Спробуйте наступного разу.')
+		</script>
+	</main>
+</body>
+</html>

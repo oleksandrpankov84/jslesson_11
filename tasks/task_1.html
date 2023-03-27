@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Домашне завдання 11</title>
+</head>
+<body>
+	<header>
+		<a href="../index.html">На головну</a>
+	</header>
+	<main>
+		<h1>Задача 1</h1>
+		<p>Задача 1. Знайти суми елементів у вказаній області:</p>
+		<p>1) <img src="../img/Picture 1.png" alt="Picture1"></p>
+		<p>2) <img src="../img/Picture 2.png" alt="Picture1"></p>
+		<p>3) <img src="../img/Picture 3.png" alt="Picture1"></p>
+		<p>4) <img src="../img/Picture 4.png" alt="Picture1"></p>
+		<p>Суму парних рядків</p>
+		<p>Суму непарних стовпців</p>
+		<p>У парних рядках – непарні стовпці, у непарних – парні.</p>
+		<script>
+			//Задача 1. Знайти суми елементів у вказаній області:
+			const elementList=[
+				[23,45,66,78],
+				[87,34,55,23],
+				[62,12,9,73],
+				[98,53,74,2]
+			]
+			// picture 1
+			let sum1=0
+			for (let row = 0; row < Math.floor(elementList.length/2); row++) {
+				for (let column = 0; column <Math.floor(elementList[row].length/2) ; column++) {
+					sum1+=elementList[row][column]
+				}
+			}
+			console.log(sum1)
+			// picture 2
+			let sum2=0
+			for (let row = 0; row < Math.floor(elementList.length/2); row++) {
+				for (let column = Math.floor(elementList[row].length/2); column <elementList[row].length; column++) {
+					sum2+=elementList[row][column]
+				}
+			}
+			console.log(sum2)
+			//picture 3
+			let sum3=0
+			for (let row = Math.floor(elementList.length/2); row <elementList.length; row++) {
+				for (let column = 0; column <Math.floor(elementList[row].length/2) ; column++) {
+					sum3+=elementList[row][column]
+				}
+			}
+			console.log(sum3)
+			//picture 4
+			let sum4=0
+			for (let row = Math.floor(elementList.length/2); row <elementList.length; row++) {
+				for (let column = Math.floor(elementList[row].length/2); column <elementList[row].length; column++) {
+					sum4+=elementList[row][column]
+				}
+			}
+			console.log(sum4)
+			//5. сумв парніх радків
+			let sumEvenRow=0
+			for (let row = 0; row < elementList.length; row++) {
+				for (let column = 0; column < elementList[row].length; column++) {
+					if((row+1)%2===0)sumEvenRow+=elementList[row][column]
+				}
+			}
+			console.log(sumEvenRow)
+			//cума непарних стовпців
+			let SumOddRow=0
+			for (let row = 0; row < elementList.length; row+=2) {
+				for (let column = 0; column < elementList[row].length; column++) {
+					SumOddRow+=elementList[row][column]
+				}
+			}
+			console.log(SumOddRow)
+			//У парних рядках – непарні стовпці,у непарних – парні.
+			let sumEvenRowOddColumn=0
+			for (let row = 0; row < elementList.length; row++) {
+				for (let column = 0; column < elementList[row].length; column++) {
+					if ((row+1)%2===0&&(column+1)%2!==0) {
+						sumEvenRowOddColumn+=elementList[row][column]
+					} else if((row+1)%2!==0&&(column+1)%2===0) {
+						sumEvenRowOddColumn+=elementList[row][column]
+					}
+				}
+			}
+			console.log(sumEvenRowOddColumn)
+		</script>
+	</main>
+</body>
+</html>
